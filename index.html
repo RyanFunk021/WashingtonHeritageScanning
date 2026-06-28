@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Washington Heritage Scanning | Your Memories Never Leave Washington, Illinois</title>
+<meta name="description" content="Premium local photo scanning in Washington, Illinois. Double-sided scans, face organization, and secure cloud delivery. No mail-in risk, ever.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+        },
+        colors: {
+          ink: '#1f2a24',
+          cream: '#fbf7ef',
+          parchment: '#f3ead8',
+          brass: '#a9762f',
+          forest: '#2f4a3c',
+          forestdark: '#22372c',
+          terracotta: '#bf5b3f',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+  .font-display { font-family: Georgia, Cambria, 'Times New Roman', Times, serif; }
+  .ribbon-popular {
+    background: linear-gradient(135deg, #bf5b3f, #a9762f);
+  }
+  .photo-tilt-1 { transform: rotate(-4deg); }
+  .photo-tilt-2 { transform: rotate(3deg); }
+  .photo-tilt-3 { transform: rotate(-2deg); }
+  .pricing-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(34, 55, 44, 0.35);
+  }
+  .feature-icon-wrap {
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .feature-card:hover .feature-icon-wrap {
+    transform: scale(1.08) rotate(-3deg);
+  }
+  .focus-ring:focus-visible {
+    outline: 3px solid #a9762f;
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .pricing-card, .feature-icon-wrap { transition: none !important; }
+  }
+</style>
+</head>
+<body class="bg-cream text-ink antialiased">
+
+  <a href="#pricing" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-forest focus:text-cream focus:px-4 focus:py-2 focus:rounded-md">Skip to pricing</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur border-b border-forest/10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-2 focus-ring rounded-md">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-forest text-cream font-display text-lg">W</span>
+        <span class="font-display text-lg sm:text-xl font-bold text-forest leading-tight">
+          Washington Heritage Scanning
+        </span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-forest/90">
+        <a href="#features" class="hover:text-terracotta focus-ring rounded-md">Features</a>
+        <a href="#pricing" class="hover:text-terracotta focus-ring rounded-md">Pricing</a>
+        <a href="#trust" class="hover:text-terracotta focus-ring rounded-md">How Delivery Works</a>
+        <a href="#faq" class="hover:text-terracotta focus-ring rounded-md">FAQ</a>
+      </nav>
+      <a href="#pricing" class="inline-flex items-center rounded-full bg-terracotta text-cream text-sm font-bold px-5 py-2.5 hover:bg-brass transition-colors focus-ring shadow-sm">
+        Get a Free Quote
+      </a>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" class="relative overflow-hidden bg-gradient-to-b from-parchment to-cream">
+    <div class="max-w-6xl mx-auto px-6 py-16 sm:py-24 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="inline-flex items-center gap-2 rounded-full bg-forest/10 text-forest text-xs sm:text-sm font-bold px-4 py-2 mb-6">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+          Locally Owned &amp; Operated in Washington, IL
+        </span>
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.1] font-bold text-forestdark">
+          Your Memories Never Leave <span class="text-terracotta">Washington, Illinois.</span>
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-ink/80 leading-relaxed max-w-xl">
+          National mail-in scanning services ask you to box up your grandmother's only photographs and trust them to a stranger, a truck, and the postal system. We don't.
+          Every photo you bring us is scanned by hand, by a neighbor, right here in town &mdash; and it never gets on a truck.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="#pricing" class="inline-flex justify-center items-center rounded-full bg-forest text-cream text-base font-bold px-7 py-3.5 hover:bg-forestdark transition-colors focus-ring shadow-md">
+            See Pricing &amp; Packages
+          </a>
+          <a href="#trust" class="inline-flex justify-center items-center rounded-full border-2 border-forest text-forest text-base font-bold px-7 py-3.5 hover:bg-forest hover:text-cream transition-colors focus-ring">
+            How We Protect Your Photos
+          </a>
+        </div>
+        <dl class="mt-10 grid grid-cols-3 gap-6 max-w-md">
+          <div>
+            <dt class="text-2xl sm:text-3xl font-display font-bold text-forest">0</dt>
+            <dd class="text-xs sm:text-sm text-ink/70 mt-1">Packages lost in shipping</dd>
+          </div>
+          <div>
+            <dt class="text-2xl sm:text-3xl font-display font-bold text-forest">100%</dt>
+            <dd class="text-xs sm:text-sm text-ink/70 mt-1">Hands-on local scanning</dd>
+          </div>
+          <div>
+            <dt class="text-2xl sm:text-3xl font-display font-bold text-forest">2</dt>
+            <dd class="text-xs sm:text-sm text-ink/70 mt-1">Sides of every photo captured</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="relative h-80 sm:h-96 lg:h-[26rem] hidden sm:block" aria-hidden="true">
+        <div class="absolute left-4 top-6 w-48 sm:w-56 bg-white p-3 pb-6 rounded-sm shadow-xl photo-tilt-1">
+          <div class="aspect-[4/3] bg-gradient-to-br from-amber-100 to-orange-200 rounded-sm flex items-center justify-center text-forest/40 font-display text-sm">1962</div>
+        </div>
+        <div class="absolute right-6 top-0 w-44 sm:w-52 bg-white p-3 pb-6 rounded-sm shadow-xl photo-tilt-2">
+          <div class="aspect-[4/3] bg-gradient-to-br from-stone-200 to-stone-300 rounded-sm flex items-center justify-center text-forest/40 font-display text-sm">Family Reunion</div>
+        </div>
+        <div class="absolute left-16 bottom-4 w-44 sm:w-52 bg-white p-3 pb-6 rounded-sm shadow-xl photo-tilt-3">
+          <div class="aspect-[4/3] bg-gradient-to-br from-emerald-100 to-teal-200 rounded-sm flex items-center justify-center text-forest/40 font-display text-sm">Grandma's Porch</div>
+        </div>
+        <div class="absolute right-2 bottom-10 inline-flex items-center gap-2 bg-forest text-cream text-xs font-bold px-4 py-2 rounded-full shadow-lg">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+          Never mailed. Never lost.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <section class="bg-forest text-cream">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm sm:text-base font-semibold text-center">
+      <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg> Drop-off &amp; pickup in Washington, IL</span>
+      <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Photos handled by a real person, not a machine</span>
+      <span class="flex items-center gap-2"><svg class="h-5 w-5 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> Private, never shared or sold</span>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section id="features" class="max-w-6xl mx-auto px-6 py-20 sm:py-28">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-forestdark">Built for Photos That Can't Be Replaced</h2>
+      <p class="mt-4 text-ink/70 text-lg">Most scanning shops rush a stack of photos through a feeder and call it done. We treat every photo like it's the only copy left &mdash; because for many families, it is.</p>
+    </div>
+
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="feature-card bg-white rounded-2xl border border-forest/10 p-8 shadow-sm hover:shadow-lg transition-shadow">
+        <div class="feature-icon-wrap inline-flex h-14 w-14 items-center justify-center rounded-xl bg-terracotta/10 text-terracotta mb-5">
+          <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="13" height="13" rx="2"/><path d="M8 9h11a2 2 0 012 2v9H11a2 2 0 01-2-2v-9z"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-forestdark">Automatic Double-Sided Scanning</h3>
+        <p class="mt-3 text-ink/70 leading-relaxed">If grandmother wrote a name, date, or note on the back, we capture it automatically &mdash; no separate pass, no extra fee. The handwriting is often as precious as the picture itself.</p>
+      </div>
+
+      <div class="feature-card bg-white rounded-2xl border border-forest/10 p-8 shadow-sm hover:shadow-lg transition-shadow">
+        <div class="feature-icon-wrap inline-flex h-14 w-14 items-center justify-center rounded-xl bg-forest/10 text-forest mb-5">
+          <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="11" r="2.5"/><path d="M3 20c0-3 2.5-5 6-5s6 2 6 5"/><path d="M14 18c.3-1.8 1.6-3 3-3 1.8 0 3.3 1.3 3.5 3"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-forestdark">Intelligent Face Organization</h3>
+        <p class="mt-3 text-ink/70 leading-relaxed">Your digital archive is automatically grouped by the faces that appear across decades of photos, so finding "every picture of Mom" takes seconds instead of hours of scrolling.</p>
+      </div>
+
+      <div class="feature-card bg-white rounded-2xl border border-forest/10 p-8 shadow-sm hover:shadow-lg transition-shadow">
+        <div class="feature-icon-wrap inline-flex h-14 w-14 items-center justify-center rounded-xl bg-brass/10 text-brass mb-5">
+          <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-bold text-forestdark">Interactive Digital Archive Bundles</h3>
+        <p class="mt-3 text-ink/70 leading-relaxed">Photos are delivered as a browsable, shareable digital album &mdash; organized by decade and event &mdash; so the whole family can revisit, tag, and pass memories down for generations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY LOCAL / RISK COMPARISON ============ -->
+  <section class="bg-parchment">
+    <div class="max-w-6xl mx-auto px-6 py-20 sm:py-24">
+      <div class="max-w-2xl mx-auto text-center mb-12">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-forestdark">Local Care vs. Mail-In Risk</h2>
+        <p class="mt-4 text-ink/70 text-lg">When photos are irreplaceable, "good enough" shipping insurance isn't good enough.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white/60 border border-forest/10 rounded-2xl p-8">
+          <h3 class="font-display text-lg font-bold text-ink/60 mb-4">National Mail-In Services</h3>
+          <ul class="space-y-3 text-ink/70">
+            <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg> Your only photos travel hundreds of miles in a box</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg> Scanned by an anonymous facility, far from home</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg> Lost or damaged packages mean memories gone forever</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-terracotta mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg> Slow, impersonal customer support</li>
+          </ul>
+        </div>
+        <div class="bg-forest text-cream rounded-2xl p-8 shadow-xl">
+          <h3 class="font-display text-lg font-bold text-brass mb-4">Washington Heritage Scanning</h3>
+          <ul class="space-y-3">
+            <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-brass mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Photos stay within Washington, IL city limits, always</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-brass mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Scanned by hand by a local neighbor you can meet</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-brass mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Zero shipping &mdash; zero risk of a lost package, ever</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-brass mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Friendly, face-to-face support from start to finish</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section id="pricing" class="max-w-6xl mx-auto px-6 py-20 sm:py-28">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-forestdark">Simple, Honest Pricing</h2>
+      <p class="mt-4 text-ink/70 text-lg">Choose the package that fits your collection. No subscriptions, no hidden fees, no surprises.</p>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-8 items-start">
+
+      <!-- Tier 1 -->
+      <div class="pricing-card relative bg-white rounded-2xl border-2 border-forest/10 p-8 flex flex-col h-full">
+        <h3 class="font-display text-2xl font-bold text-forestdark">The Keepsake Shoebox</h3>
+        <p class="text-sm text-ink/60 mt-1">For one box of memories</p>
+        <div class="mt-6 flex items-end gap-2">
+          <span class="text-4xl font-display font-bold text-forest">$99</span>
+        </div>
+        <p class="text-sm text-ink/60 mt-1">Up to 300 photos &middot; ~$0.33/photo</p>
+        <ul class="mt-6 space-y-3 text-ink/80 text-sm flex-1">
+          <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-forest mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> High-speed digital scans</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-forest mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Automatic orientation correction</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-forest mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Secure 30-day cloud download link</li>
+        </ul>
+        <a href="#contact" class="mt-8 inline-flex justify-center items-center rounded-full border-2 border-forest text-forest font-bold px-6 py-3 hover:bg-forest hover:text-cream transition-colors focus-ring">
+          Start with the Shoebox
+        </a>
+      </div>
+
+      <!-- Tier 2 - Most Popular -->
+      <div class="pricing-card relative bg-forestdark text-cream rounded-2xl border-2 border-brass p-8 flex flex-col h-full shadow-2xl md:-mt-4 md:mb-4">
+        <span class="ribbon-popular absolute -top-4 left-1/2 -translate-x-1/2 text-cream text-xs font-bold uppercase tracking-wide px-4 py-1.5 rounded-full shadow-md whitespace-nowrap">
+          Most Popular
+        </span>
+        <h3 class="font-display text-2xl font-bold mt-2">The Family Archive</h3>
+        <p class="text-sm text-cream/70 mt-1">For the bin in the closet</p>
+        <div class="mt-6 flex items-end gap-2">
+          <span class="text-4xl font-display font-bold text-brass">$249</span>
+        </div>
+        <p class="text-sm text-cream/70 mt-1">Up to 1,000 photos &middot; ~$0.25/photo</p>
+        <ul class="mt-6 space-y-3 text-sm flex-1">
+          <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-brass mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Everything in the Shoebox tier</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-brass mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Automatic color &amp; fade restoration</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-brass mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Secure digital download link</li>
+        </ul>
+        <a href="#contact" class="mt-8 inline-flex justify-center items-center rounded-full bg-brass text-forestdark font-bold px-6 py-3 hover:bg-cream transition-colors focus-ring">
+          Choose the Family Archive
+        </a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="pricing-card relative bg-white rounded-2xl border-2 border-forest/10 p-8 flex flex-col h-full">
+        <h3 class="font-display text-2xl font-bold text-forestdark">The Heritage Legacy Box</h3>
+        <p class="text-sm text-ink/60 mt-1">For a lifetime of photos</p>
+        <div class="mt-6 flex items-end gap-2">
+          <span class="text-4xl font-display font-bold text-forest">$449</span>
+        </div>
+        <p class="text-sm text-ink/60 mt-1">Up to 2,000 photos &middot; ~$0.22/photo</p>
+        <ul class="mt-6 space-y-3 text-ink/80 text-sm flex-1">
+          <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-forest mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Everything in the Family Archive tier</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-forest mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Priority fast-track turnaround</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 flex-shrink-0 text-forest mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg> Complimentary white-glove porch pickup &amp; drop-off (Washington city limits)</li>
+        </ul>
+        <a href="#contact" class="mt-8 inline-flex justify-center items-center rounded-full border-2 border-forest text-forest font-bold px-6 py-3 hover:bg-forest hover:text-cream transition-colors focus-ring">
+          Preserve the Legacy Box
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST / DELIVERY ============ -->
+  <section id="trust" class="bg-forest text-cream">
+    <div class="max-w-6xl mx-auto px-6 py-20 sm:py-28">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold">A Delivery Model Built on Trust</h2>
+        <p class="mt-4 text-cream/80 text-lg">We never ship your original photos anywhere. Your finished digital archive reaches you through a secure system designed for total peace of mind.</p>
+      </div>
+
+      <div class="mt-14 max-w-2xl mx-auto">
+        <div class="bg-white/5 border border-cream/15 rounded-2xl p-8">
+          <div class="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-brass/20 text-brass mb-5">
+            <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 16l-4-4-4 4M12 12v9"/><path d="M20 16.58A5 5 0 0018 7h-1.26A8 8 0 104 15.25"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold">Instant Secure Cloud Sharing</h3>
+          <p class="mt-3 text-cream/80 leading-relaxed">Your finished, organized archive is delivered through a private Google Drive link. No giant email attachments, no public links &mdash; just secure, instant access for you and the family members you choose to share with.</p>
+        </div>
+      </div>
+
+      <div class="mt-10 text-center">
+        <p class="inline-flex items-center gap-2 text-sm font-semibold text-cream/90 bg-white/5 border border-cream/15 rounded-full px-5 py-3">
+          <svg class="h-5 w-5 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Originals are handled only in-house in Washington, IL and returned to you in person &mdash; never shipped.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="max-w-4xl mx-auto px-6 py-20 sm:py-28">
+    <h2 class="font-display text-3xl sm:text-4xl font-bold text-forestdark text-center">Common Questions</h2>
+    <div class="mt-10 space-y-4">
+      <details class="group bg-white border border-forest/10 rounded-xl p-6 open:shadow-md">
+        <summary class="flex items-center justify-between cursor-pointer font-display font-bold text-lg text-forestdark focus-ring rounded-md">
+          Do I ever have to ship or mail my photos?
+          <svg class="h-5 w-5 text-forest transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="mt-3 text-ink/70 leading-relaxed">Never. Every photo is dropped off and picked up in person within Washington, Illinois, or collected via our complimentary porch pickup service (Heritage Legacy Box tier). Your originals never touch a shipping carrier.</p>
+      </details>
+      <details class="group bg-white border border-forest/10 rounded-xl p-6 open:shadow-md">
+        <summary class="flex items-center justify-between cursor-pointer font-display font-bold text-lg text-forestdark focus-ring rounded-md">
+          What if there's writing on the back of a photo?
+          <svg class="h-5 w-5 text-forest transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="mt-3 text-ink/70 leading-relaxed">Our automatic double-sided scanning captures the back of every photo by default, at no extra charge, so names, dates, and handwritten notes are preserved alongside the image.</p>
+      </details>
+      <details class="group bg-white border border-forest/10 rounded-xl p-6 open:shadow-md">
+        <summary class="flex items-center justify-between cursor-pointer font-display font-bold text-lg text-forestdark focus-ring rounded-md">
+          How do I receive my finished digital photos?
+          <svg class="h-5 w-5 text-forest transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="mt-3 text-ink/70 leading-relaxed">You'll get a secure private Google Drive link for instant cloud access, so you and your family can view and download your photos right away.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section id="contact" class="bg-parchment">
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-forestdark">Let's Keep Your Memories Right Here at Home</h2>
+      <p class="mt-4 text-ink/70 text-lg max-w-2xl mx-auto">Stop by, give us a call, or request a free quote. Either way, your photos stay in Washington, Illinois &mdash; from the moment you hand them to us, until the moment they're safely digital.</p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+13095550199" class="inline-flex justify-center items-center rounded-full bg-forest text-cream font-bold px-7 py-3.5 hover:bg-forestdark transition-colors focus-ring shadow-md">
+          Call (309) 555-0199
+        </a>
+        <a href="mailto:hello@washingtonheritagescanning.com" class="inline-flex justify-center items-center rounded-full border-2 border-forest text-forest font-bold px-7 py-3.5 hover:bg-forest hover:text-cream transition-colors focus-ring">
+          Email for a Free Quote
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-forestdark text-cream/80">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+      <p>&copy; <span id="year"></span> Washington Heritage Scanning &middot; Washington, Illinois</p>
+      <p>Locally owned. Hands-on care. Zero shipping risk.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
