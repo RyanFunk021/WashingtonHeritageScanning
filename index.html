@@ -428,5 +428,13 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script>
+    // Reviewer comment fields: add ?feedback to the address. Notes stay in the reviewer's own browser.
+    if (/[?&]feedback\b/.test(location.search)) {
+      var fb = document.createElement('script');
+      fb.src = 'feedback.js';
+      document.body.appendChild(fb);
+    }
+  </script>
 </body>
 </html>

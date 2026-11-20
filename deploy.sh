@@ -5,5 +5,5 @@ set -e
 cd "$(dirname "$0")"
 npx -y tailwindcss@3.4.17 -c tailwind.config.js -i tailwind.in.css -o styles.css --minify
 rm -rf dist && mkdir dist
-cp index.html styles.css dist/
+cp index.html styles.css feedback.js dist/
 npx -y wrangler@4 deploy

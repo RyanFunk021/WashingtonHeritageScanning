@@ -31,8 +31,8 @@ This repo is public, so personal inboxes are written here as "your Gmail" and
 ```
 
 The first time on a machine, run `npx wrangler login` first. The script
-rebuilds `styles.css` from `index.html`, copies **only** `index.html` and
-`styles.css` into `dist/`, and publishes that folder. Nothing else in the repo
+rebuilds `styles.css` from `index.html`, copies **only** `index.html`,
+`styles.css` and `feedback.js` into `dist/`, and publishes that folder. Nothing else in the repo
 (this file, the copy drafts) can be published by accident.
 
 The page's styles come from a compiled Tailwind file (`styles.css`), not
@@ -41,6 +41,16 @@ browser on every page view, and Tailwind says it is not for production. The
 colours live in `tailwind.config.js`. If you add a Tailwind class to the page,
 `./deploy.sh` picks it up. To preview the page locally after changing classes,
 run the `tailwindcss` line from `deploy.sh` by itself.
+
+## Commenting on the page
+
+Add `?feedback` to the address, e.g. https://4thgenerationstudios.com/?feedback
+(works on a phone too), or run `./review.sh` to comment on unpublished local
+edits. Click anything to comment on it or rewrite its text; clicking the next
+spot saves the last one. **Copy JSON** puts every note on the clipboard to
+paste into Claude. Notes stay in that browser until **Notes > Clear all**;
+nothing is sent anywhere. Turn **Commenting** off to follow links. Visitors
+without `?feedback` never load any of it.
 
 The old GitHub Pages site (ryanfunk021.github.io/WashingtonHeritageScanning)
 still shows the old name until this branch is merged into `main` and pushed.
