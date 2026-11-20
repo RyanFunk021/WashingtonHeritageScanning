@@ -1,0 +1,14 @@
+// Publishes ONLY what deploy.sh copies into dist/ (index.html, styles.css).
+// Never point "directory" at the repo root: it would publish CLOUDFLARE.md
+// and the copy drafts.
+{
+  "name": "fourth-generation-studios",
+  "compatibility_date": "2026-11-19",
+  "assets": {
+    "directory": "./dist"
+  },
+  "routes": [
+    { "pattern": "4thgenerationstudios.com", "custom_domain": true },
+    { "pattern": "www.4thgenerationstudios.com", "custom_domain": true }
+  ]
+}
