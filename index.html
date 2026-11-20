@@ -14,24 +14,37 @@
           serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
         },
         colors: {
-          ink: '#1f2a24',
-          cream: '#fbf7ef',
-          parchment: '#f3ead8',
-          brass: '#a9762f',
-          forest: '#2f4a3c',
-          forestdark: '#22372c',
-          terracotta: '#bf5b3f',
+          // Colors live in CSS variables (see :root below) so feedback mode can adjust them live.
+          ink: 'rgb(var(--c-ink) / <alpha-value>)',
+          cream: 'rgb(var(--c-cream) / <alpha-value>)',
+          parchment: 'rgb(var(--c-parchment) / <alpha-value>)',
+          brass: 'rgb(var(--c-brass) / <alpha-value>)',
+          forest: 'rgb(var(--c-forest) / <alpha-value>)',
+          forestdark: 'rgb(var(--c-forestdark) / <alpha-value>)',
+          terracotta: 'rgb(var(--c-terracotta) / <alpha-value>)',
         },
       },
     },
   };
 </script>
 <style>
+  :root {
+    /* Brand colors as "R G B" so Tailwind opacity modifiers (bg-forest/10) keep working. */
+    --c-ink: 31 42 36;          /* #1f2a24 */
+    --c-cream: 251 247 239;     /* #fbf7ef */
+    --c-parchment: 243 234 216; /* #f3ead8 */
+    --c-brass: 169 118 47;      /* #a9762f */
+    --c-forest: 47 74 60;       /* #2f4a3c */
+    --c-forestdark: 34 55 44;   /* #22372c */
+    --c-terracotta: 191 91 63;  /* #bf5b3f */
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --font-display: Georgia, Cambria, 'Times New Roman', Times, serif;
+  }
   html { scroll-behavior: smooth; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
-  .font-display { font-family: Georgia, Cambria, 'Times New Roman', Times, serif; }
+  body { font-family: var(--font-body); }
+  .font-display { font-family: var(--font-display); }
   .ribbon-popular {
-    background: linear-gradient(135deg, #bf5b3f, #a9762f);
+    background: linear-gradient(135deg, rgb(var(--c-terracotta)), rgb(var(--c-brass)));
   }
   .photo-tilt-1 { transform: rotate(-4deg); }
   .photo-tilt-2 { transform: rotate(3deg); }
@@ -41,7 +54,7 @@
   }
   .pricing-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 25px 50px -12px rgba(34, 55, 44, 0.35);
+    box-shadow: 0 25px 50px -12px rgb(var(--c-forestdark) / 0.35);
   }
   .feature-icon-wrap {
     transition: transform 0.2s ease, background-color 0.2s ease;
@@ -50,7 +63,7 @@
     transform: scale(1.08) rotate(-3deg);
   }
   .focus-ring:focus-visible {
-    outline: 3px solid #a9762f;
+    outline: 3px solid rgb(var(--c-brass));
     outline-offset: 3px;
   }
   @media (prefers-reduced-motion: reduce) {
@@ -447,6 +460,264 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- ============ DESIGN FEEDBACK MODE ============
+       Hidden from visitors. Open the page with ?feedback at the end of the URL
+       (e.g. index.html?feedback) to show the panel. Add ?feedback=off to turn it off.
+       Changes are saved in this browser only; use "Copy feedback" to share them. -->
+  <script>
+  (function () {
+    var params = new URLSearchParams(location.search);
+    var KEY = 'whs-feedback-v1';
+    function ls(fn) { try { return fn(); } catch (e) { return null; } }
+    if (params.get('feedback') === 'off') { ls(function () { localStorage.removeItem(KEY + ':on'); }); return; }
+    var on = params.has('feedback') || ls(function () { return localStorage.getItem(KEY + ':on'); }) === '1';
+    if (!on) return;
+    ls(function () { localStorage.setItem(KEY + ':on', '1'); });
+
+    var root = document.documentElement;
+    var COLORS = {
+      ink: ['Body text', '#1f2a24'], cream: ['Page background', '#fbf7ef'], parchment: ['Alt background', '#f3ead8'],
+      brass: ['Accent (brass)', '#a9762f'], forest: ['Primary (forest)', '#2f4a3c'],
+      forestdark: ['Primary dark', '#22372c'], terracotta: ['Call-to-action', '#bf5b3f']
+    };
+    var DISPLAY_FONTS = {
+      'Georgia (current)': "Georgia, Cambria, 'Times New Roman', Times, serif",
+      'Playfair Display': "'Playfair Display', Georgia, serif",
+      'Lora': "'Lora', Georgia, serif",
+      'Merriweather': "'Merriweather', Georgia, serif",
+      'Libre Baskerville': "'Libre Baskerville', Georgia, serif",
+      'Cormorant Garamond': "'Cormorant Garamond', Georgia, serif"
+    };
+    var BODY_FONTS = {
+      'System (current)': "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
+      'Inter': "'Inter', sans-serif",
+      'Source Sans 3': "'Source Sans 3', sans-serif",
+      'Lato': "'Lato', sans-serif",
+      'Nunito Sans': "'Nunito Sans', sans-serif"
+    };
+    var DEFAULTS = { displayFont: 'Georgia (current)', bodyFont: 'System (current)', textSize: 16, radius: 'Current' };
+    var RADII = { 'Current': null, 'Square': '0px', 'Slight': '6px', 'Rounded': '14px' };
+
+    var state = ls(function () { return JSON.parse(localStorage.getItem(KEY)); }) || {};
+    state.colors = state.colors || {};
+    state.notes = state.notes || {};
+    state.edits = state.edits || {};
+    state.general = state.general || '';
+    for (var k in DEFAULTS) if (state[k] == null) state[k] = DEFAULTS[k];
+    function save() { ls(function () { localStorage.setItem(KEY, JSON.stringify(state)); }); }
+
+    function hexToRgb(h) { var n = parseInt(h.slice(1), 16); return (n >> 16 & 255) + ' ' + (n >> 8 & 255) + ' ' + (n & 255); }
+    function loadFont(name) {
+      if (/current/.test(name)) return;
+      var id = 'fb-font-' + name.replace(/\s/g, '-');
+      if (document.getElementById(id)) return;
+      var l = document.createElement('link'); l.id = id; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=' + name.replace(/\s/g, '+') + ':wght@400;600;700&display=swap';
+      document.head.appendChild(l);
+    }
+    var radiusStyle = document.createElement('style'); document.head.appendChild(radiusStyle);
+    function applyTheme() {
+      for (var c in COLORS) root.style.setProperty('--c-' + c, hexToRgb(state.colors[c] || COLORS[c][1]));
+      loadFont(state.displayFont); loadFont(state.bodyFont);
+      root.style.setProperty('--font-display', DISPLAY_FONTS[state.displayFont]);
+      root.style.setProperty('--font-body', BODY_FONTS[state.bodyFont]);
+      root.style.fontSize = state.textSize + 'px';
+      var r = RADII[state.radius];
+      radiusStyle.textContent = r == null ? '' :
+        '[class*="rounded"]:not(.fb-ui):not(.h-9):not(.sr-only) { border-radius: ' + r + ' !important; }';
+    }
+
+    // ---- Sections, editable text ----
+    var sections = Array.prototype.slice.call(document.querySelectorAll('body > header, body > section, body > footer'));
+    sections.forEach(function (sec, i) {
+      var h = sec.querySelector('h1, h2');
+      var label = h ? h.textContent.trim().replace(/\s+/g, ' ') : (sec.tagName === 'HEADER' ? 'Header / nav' : sec.tagName === 'FOOTER' ? 'Footer' : 'Section ' + (i + 1));
+      if (label.length > 48) label = label.slice(0, 45) + '…';
+      sec.dataset.fbSection = label;
+    });
+    function sectionOf(el) { var s = el.closest('[data-fb-section]'); return s ? s.dataset.fbSection : 'Page'; }
+
+    var editables = [];
+    var TEXT_SEL = 'h1, h2, h3, h4, p, li, dt, dd, a, button, span, label, summary, td, th';
+    sections.forEach(function (sec) {
+      sec.querySelectorAll(TEXT_SEL).forEach(function (el) {
+        // Only leaf-ish text elements (no nested block/text children we'd also pick).
+        if (el.querySelector(TEXT_SEL.replace(/span, /, '').replace(/, a/, '')) || !el.textContent.trim()) return;
+        if (el.parentElement.closest('[data-fb-id]')) return; // already inside an editable block
+        el.dataset.fbId = String(editables.length);
+        editables.push(el);
+      });
+    });
+    function normalize(t) { return t.replace(/\s+/g, ' ').trim(); }
+    editables.forEach(function (el) {
+      var e = state.edits[el.dataset.fbId];
+      el.dataset.fbOrig = normalize(el.textContent);
+      if (e && e.orig === el.dataset.fbOrig) { el.innerHTML = e.html; el.classList.add('fb-edited'); }
+      else if (e) delete state.edits[el.dataset.fbId]; // page copy changed since; drop stale edit
+    });
+
+    // ---- Styles for the panel (fixed colors, independent of the theme being edited) ----
+    var css = document.createElement('style');
+    css.textContent = [
+      '.fb-ui{all:initial;font:13px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:#1d1d1f;}',
+      '.fb-ui *{box-sizing:border-box;font:inherit;color:inherit;}',
+      '#fb-panel{position:fixed;z-index:9999;right:16px;bottom:16px;width:340px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);display:flex;flex-direction:column;background:#fff;border:1px solid #d2d2d7;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.25);}',
+      '#fb-panel.fb-min .fb-body{display:none;}',
+      '.fb-head{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid #e5e5ea;}',
+      '.fb-head b{flex:1;font-weight:700;}',
+      '.fb-body{overflow:auto;padding:4px 12px 12px;}',
+      '.fb-h{margin:14px 0 6px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6e6e73;}',
+      '.fb-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0;}',
+      '.fb-row input[type=color]{width:44px;height:26px;padding:0;border:1px solid #d2d2d7;border-radius:6px;background:none;cursor:pointer;}',
+      '.fb-ui select,.fb-ui textarea{width:100%;border:1px solid #d2d2d7;border-radius:6px;padding:5px 7px;background:#fff;}',
+      '.fb-row select{width:60%;}',
+      '.fb-ui textarea{min-height:56px;resize:vertical;}',
+      '.fb-btn{cursor:pointer;border:1px solid #d2d2d7;background:#f5f5f7;border-radius:6px;padding:5px 10px;font-weight:600;}',
+      '.fb-btn:hover{background:#e8e8ed;}',
+      '.fb-btn.fb-primary{background:#0a66d8;border-color:#0a66d8;color:#fff;}',
+      '.fb-btn.fb-on{background:#1d1d1f;color:#fff;border-color:#1d1d1f;}',
+      '.fb-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}',
+      '.fb-hint{color:#6e6e73;font-size:12px;margin:2px 0 6px;}',
+      '.fb-list{margin:0;padding-left:18px;}',
+      '.fb-list li{margin:3px 0;}',
+      '.fb-note-btn{position:absolute;z-index:30;top:8px;right:8px;cursor:pointer;border:1px solid #d2d2d7;border-radius:999px;background:#fff;padding:3px 10px;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.12);}',
+      '.fb-note-btn.fb-has{background:#ffd60a;border-color:#e0b800;}',
+      '.fb-note{position:absolute;z-index:31;top:40px;right:8px;width:280px;max-width:calc(100% - 16px);background:#fffbe0;border:1px solid #e0b800;border-radius:8px;padding:8px;box-shadow:0 6px 18px rgba(0,0,0,.18);}',
+      '.fb-note[hidden]{display:none;}',
+      '.fb-note .fb-sec{font-weight:700;margin-bottom:4px;}',
+      'body.fb-editing [data-fb-id]{outline:1px dashed rgba(10,102,216,.45);outline-offset:2px;cursor:text;}',
+      'body.fb-editing [data-fb-id]:focus{outline:2px solid #0a66d8;}',
+      '.fb-edited{background:rgba(255,214,10,.35)!important;}',
+      'body.fb-hide-notes .fb-note-btn,body.fb-hide-notes .fb-note{display:none!important;}'
+    ].join('\n');
+    document.head.appendChild(css);
+
+    // ---- Section note pins ----
+    sections.forEach(function (sec) {
+      if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
+      var label = sec.dataset.fbSection;
+      var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'fb-ui fb-note-btn';
+      var box = document.createElement('div'); box.className = 'fb-ui fb-note'; box.hidden = true;
+      box.innerHTML = '<div class="fb-sec"></div><textarea placeholder="What should change in this section?"></textarea>';
+      box.querySelector('.fb-sec').textContent = label;
+      var ta = box.querySelector('textarea'); ta.value = state.notes[label] || '';
+      function refresh() { var has = !!(state.notes[label] || '').trim(); btn.textContent = has ? '✎ Note' : '+ Note'; btn.classList.toggle('fb-has', has); }
+      btn.onclick = function () { box.hidden = !box.hidden; if (!box.hidden) ta.focus(); };
+      ta.oninput = function () { state.notes[label] = ta.value; if (!ta.value.trim()) delete state.notes[label]; save(); refresh(); renderSummary(); };
+      if (sec.tagName === 'HEADER') { btn.style.top = '100%'; btn.style.marginTop = '6px'; box.style.top = 'calc(100% + 38px)'; }
+      sec.appendChild(btn); sec.appendChild(box); refresh();
+    });
+
+    // ---- Panel ----
+    var panel = document.createElement('div'); panel.id = 'fb-panel'; panel.className = 'fb-ui';
+    var colorRows = Object.keys(COLORS).map(function (c) {
+      return '<div class="fb-row"><label for="fb-c-' + c + '">' + COLORS[c][0] + '</label><input type="color" id="fb-c-' + c + '" data-color="' + c + '"></div>';
+    }).join('');
+    function opts(obj) { return Object.keys(obj).map(function (n) { return '<option>' + n + '</option>'; }).join(''); }
+    panel.innerHTML =
+      '<div class="fb-head"><b>Design feedback</b><button class="fb-btn" data-act="min" title="Collapse">–</button></div>' +
+      '<div class="fb-body">' +
+        '<div class="fb-h">Colors</div>' + colorRows +
+        '<div class="fb-h">Typography &amp; shape</div>' +
+        '<div class="fb-row"><label for="fb-df">Heading font</label><select id="fb-df">' + opts(DISPLAY_FONTS) + '</select></div>' +
+        '<div class="fb-row"><label for="fb-bf">Body font</label><select id="fb-bf">' + opts(BODY_FONTS) + '</select></div>' +
+        '<div class="fb-row"><label for="fb-ts">Text size <span id="fb-ts-v"></span></label><input id="fb-ts" type="range" min="14" max="20" step="1" style="width:60%"></div>' +
+        '<div class="fb-row"><label for="fb-rd">Corners</label><select id="fb-rd">' + opts(RADII) + '</select></div>' +
+        '<div class="fb-h">Copy &amp; notes</div>' +
+        '<div class="fb-actions"><button class="fb-btn" data-act="edit">Edit text on page</button><button class="fb-btn" data-act="notes">Hide note pins</button></div>' +
+        '<p class="fb-hint">Edit text: click any text on the page and type. Notes: use the "+ Note" pin on each section.</p>' +
+        '<label for="fb-gen" class="fb-hint" style="display:block">General feedback</label><textarea id="fb-gen" placeholder="Overall impressions, layout ideas…"></textarea>' +
+        '<div class="fb-h">Your changes</div><div id="fb-summary"></div>' +
+        '<div class="fb-actions"><button class="fb-btn fb-primary" data-act="copy">Copy feedback</button><button class="fb-btn" data-act="reset">Reset all</button><button class="fb-btn" data-act="exit">Exit</button></div>' +
+        '<p class="fb-hint" id="fb-status"></p>' +
+      '</div>';
+    document.body.appendChild(panel);
+
+    var $ = function (s) { return panel.querySelector(s); };
+    panel.querySelectorAll('[data-color]').forEach(function (inp) {
+      var c = inp.dataset.color; inp.value = state.colors[c] || COLORS[c][1];
+      inp.oninput = function () { if (inp.value === COLORS[c][1]) delete state.colors[c]; else state.colors[c] = inp.value; save(); applyTheme(); renderSummary(); };
+    });
+    function bindSelect(id, key) { var el = $(id); el.value = state[key]; el.onchange = function () { state[key] = el.value; save(); applyTheme(); renderSummary(); }; }
+    bindSelect('#fb-df', 'displayFont'); bindSelect('#fb-bf', 'bodyFont'); bindSelect('#fb-rd', 'radius');
+    var ts = $('#fb-ts'); ts.value = state.textSize; $('#fb-ts-v').textContent = '(' + state.textSize + 'px)';
+    ts.oninput = function () { state.textSize = +ts.value; $('#fb-ts-v').textContent = '(' + ts.value + 'px)'; save(); applyTheme(); renderSummary(); };
+    var gen = $('#fb-gen'); gen.value = state.general; gen.oninput = function () { state.general = gen.value; save(); };
+
+    // Text editing
+    var editing = false;
+    function setEditing(v) {
+      editing = v; document.body.classList.toggle('fb-editing', v);
+      $('[data-act=edit]').classList.toggle('fb-on', v);
+      $('[data-act=edit]').textContent = v ? 'Done editing' : 'Edit text on page';
+      editables.forEach(function (el) { if (v) el.setAttribute('contenteditable', 'plaintext-only'); else el.removeAttribute('contenteditable'); });
+    }
+    document.addEventListener('click', function (e) {
+      if (editing && e.target.closest('[data-fb-id]') && !e.target.closest('.fb-ui')) e.preventDefault(); // don't follow links while editing
+    }, true);
+    document.addEventListener('input', function (e) {
+      var el = e.target.closest && e.target.closest('[data-fb-id]'); if (!el) return;
+      var now = normalize(el.textContent);
+      if (now === el.dataset.fbOrig) { delete state.edits[el.dataset.fbId]; el.classList.remove('fb-edited'); }
+      else { state.edits[el.dataset.fbId] = { orig: el.dataset.fbOrig, now: now, html: el.innerHTML, section: sectionOf(el) }; el.classList.add('fb-edited'); }
+      save(); renderSummary();
+    });
+
+    function esc(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+    function trim(t) { return t.length > 60 ? t.slice(0, 57) + '…' : t; }
+    function renderSummary() {
+      var items = [];
+      Object.keys(state.colors).forEach(function (c) { items.push(COLORS[c][0] + ': ' + COLORS[c][1] + ' → ' + state.colors[c]); });
+      ['displayFont', 'bodyFont', 'radius'].forEach(function (k) { if (state[k] !== DEFAULTS[k]) items.push({ displayFont: 'Heading font', bodyFont: 'Body font', radius: 'Corners' }[k] + ' → ' + state[k]); });
+      if (state.textSize !== DEFAULTS.textSize) items.push('Text size → ' + state.textSize + 'px');
+      var nEdits = Object.keys(state.edits).length, nNotes = Object.keys(state.notes).length;
+      if (nEdits) items.push(nEdits + ' text edit' + (nEdits > 1 ? 's' : ''));
+      if (nNotes) items.push(nNotes + ' section note' + (nNotes > 1 ? 's' : ''));
+      $('#fb-summary').innerHTML = items.length ? '<ul class="fb-list">' + items.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('') + '</ul>' : '<p class="fb-hint">No changes yet.</p>';
+    }
+
+    function exportText() {
+      var out = ['# Design feedback: Washington Heritage Scanning', ''];
+      var theme = [];
+      Object.keys(state.colors).forEach(function (c) { theme.push('- ' + COLORS[c][0] + ' (`' + c + '`): ' + COLORS[c][1] + ' → ' + state.colors[c]); });
+      if (state.displayFont !== DEFAULTS.displayFont) theme.push('- Heading font → ' + state.displayFont);
+      if (state.bodyFont !== DEFAULTS.bodyFont) theme.push('- Body font → ' + state.bodyFont);
+      if (state.textSize !== DEFAULTS.textSize) theme.push('- Base text size → ' + state.textSize + 'px (was 16px)');
+      if (state.radius !== DEFAULTS.radius) theme.push('- Corners → ' + state.radius);
+      if (theme.length) out.push('## Theme', theme.join('\n'), '');
+      var edits = Object.keys(state.edits).sort(function (a, b) { return a - b; }).map(function (id) {
+        var e = state.edits[id]; return '- [' + e.section + '] "' + e.orig + '" → "' + e.now + '"';
+      });
+      if (edits.length) out.push('## Text edits', edits.join('\n'), '');
+      var notes = sections.map(function (s) { var n = (state.notes[s.dataset.fbSection] || '').trim(); return n ? '- **' + s.dataset.fbSection + ':** ' + n.replace(/\n+/g, ' ') : null; }).filter(Boolean);
+      if (notes.length) out.push('## Section notes', notes.join('\n'), '');
+      if (state.general.trim()) out.push('## General', state.general.trim(), '');
+      if (out.length === 2) out.push('(No changes yet.)');
+      return out.join('\n');
+    }
+
+    panel.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-act]'); if (!b) return;
+      var act = b.dataset.act, status = $('#fb-status');
+      if (act === 'min') { panel.classList.toggle('fb-min'); b.textContent = panel.classList.contains('fb-min') ? '+' : '–'; }
+      if (act === 'edit') setEditing(!editing);
+      if (act === 'notes') { var h = document.body.classList.toggle('fb-hide-notes'); b.textContent = h ? 'Show note pins' : 'Hide note pins'; }
+      if (act === 'copy') {
+        var txt = exportText();
+        var done = function () { status.textContent = 'Copied. Paste it into a message to apply the changes.'; };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, fallback); else fallback();
+        function fallback() { gen.value = txt; gen.select(); status.textContent = 'Copy blocked; the feedback is selected in the box above. Press Ctrl/Cmd+C.'; }
+      }
+      if (act === 'reset' && confirm('Clear all colors, fonts, text edits and notes?')) {
+        ls(function () { localStorage.removeItem(KEY); }); location.reload();
+      }
+      if (act === 'exit') { ls(function () { localStorage.removeItem(KEY + ':on'); }); location.href = location.pathname + location.hash; }
+    });
+
+    applyTheme(); renderSummary(); save();
+  })();
   </script>
 </body>
 </html>
