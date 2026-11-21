@@ -48,6 +48,7 @@
   .bar button:hover { background: #3f3f46; }
   .bar button.on { background: #2563eb; border-color: #2563eb; }
   .bar button.primary { background: #fff; color: #18181b; border-color: #fff; }
+  .bar button.danger { color: #fca5a5; }
   .item { padding: 7px 8px; border-radius: 6px; cursor: pointer; border-bottom: 1px solid #f4f4f5; }
   .item:hover { background: #f4f4f5; }
   .item .txt { margin-top: 2px; white-space: pre-wrap; }
@@ -94,6 +95,7 @@
   <button class="general">+ <span class="long">Page </span>note</button>
   <button class="list">Notes (<span class="count">0</span>)</button>
   <button class="copy primary">Copy JSON</button>
+  <button class="clear danger bar-clear" title="Delete all notes, e.g. after pasting them into Claude" hidden>Clear</button>
 </div>
 <div class="toast" hidden></div>`;
 
@@ -238,6 +240,7 @@
 
   function render() {
     $('.count').textContent = notes.length;
+    $('.bar-clear').hidden = !notes.length;
     pins.textContent = '';
     for (const note of notes) {
       const el = find(note);
@@ -319,7 +322,7 @@
     const s = exportJSON();
     try {
       await navigator.clipboard.writeText(s);
-      toast('Copied ' + notes.length + ' note' + (notes.length === 1 ? '' : 's') + '. Paste into Claude.');
+      toast('Copied ' + notes.length + ' note' + (notes.length === 1 ? '' : 's') + '. Paste into Claude, then Clear.');
     } catch (e) {
       panel.hidden = false;
       const box = $('.json');
@@ -382,19 +385,25 @@
   $('.close').addEventListener('click', () => { panel.hidden = true; });
   $('.copy').addEventListener('click', copy);
   $('.copy2').addEventListener('click', copy);
-  $('.clear').addEventListener('click', (e) => {
-    const b = e.currentTarget;
-    if (!clearTimer) {
-      b.textContent = 'Click again to delete all ' + notes.length;
-      clearTimer = setTimeout(() => { clearTimer = null; b.textContent = 'Clear all'; }, 4000);
-      return;
-    }
-    clearTimeout(clearTimer);
-    clearTimer = null;
-    b.textContent = 'Clear all';
-    notes = [];
-    persist(); close(); render();
-    toast('All notes cleared');
+  // Two of these: "Clear" on the bar (next to Copy JSON, so clearing after a
+  // paste is one obvious step) and "Clear all" in the Notes panel.
+  const clearButtons = root.querySelectorAll('.clear');
+  const resetClear = () => clearButtons.forEach((b) => { b.textContent = b.dataset.label; });
+  clearButtons.forEach((b) => {
+    b.dataset.label = b.textContent;
+    b.addEventListener('click', () => {
+      if (!clearTimer) {
+        b.textContent = 'Click again to delete all ' + notes.length;
+        clearTimer = setTimeout(() => { clearTimer = null; resetClear(); }, 4000);
+        return;
+      }
+      clearTimeout(clearTimer);
+      clearTimer = null;
+      resetClear();
+      notes = [];
+      persist(); close(); render();
+      toast('All notes cleared');
+    });
   });
 
   render();
