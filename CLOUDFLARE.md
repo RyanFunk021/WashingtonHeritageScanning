@@ -32,7 +32,7 @@ This repo is public, so personal inboxes are written here as "your Gmail" and
 
 The first time on a machine, run `npx wrangler login` first. The script
 rebuilds `styles.css` from `index.html`, copies **only** `index.html`,
-`styles.css` and `feedback.js` into `dist/`, and publishes that folder. Nothing else in the repo
+`styles.css`, `feedback.js` and `images/` into `dist/`, and publishes that folder. Nothing else in the repo
 (this file, the copy drafts) can be published by accident.
 
 The page's styles come from a compiled Tailwind file (`styles.css`), not

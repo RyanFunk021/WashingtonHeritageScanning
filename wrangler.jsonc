@@ -1,4 +1,4 @@
-// Publishes ONLY what deploy.sh copies into dist/ (index.html, styles.css, feedback.js).
+// Publishes ONLY what deploy.sh copies into dist/ (index.html, styles.css, feedback.js, images/).
 // Never point "directory" at the repo root: it would publish CLOUDFLARE.md
 // and the copy drafts.
 {
