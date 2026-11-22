@@ -10,16 +10,26 @@
 <meta property="og:title" content="4th Generation Studios | Photo Scanning in Washington, Illinois">
 <meta property="og:description" content="We pick up your prints, scan them by hand, and bring them back. Your photos never get mailed.">
 <meta property="og:url" content="https://4thgenerationstudios.com/">
-<meta property="og:image" content="https://4thgenerationstudios.com/images/share-card.jpg">
+<meta property="og:image" content="https://4thgenerationstudios.com/images/share-card.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="4th Generation Studios, photo scanning in Washington, Illinois, with two old family prints">
+<meta property="og:image:alt" content="The 4th Generation Studios logo, a pressed fern in album corners, beside two old family prints">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <style>
+  @font-face {
+    font-family: 'Fraunces';
+    src: url('fonts/fraunces.woff2') format('woff2');
+    font-weight: 400 800;
+    font-display: swap;
+  }
   html { scroll-behavior: smooth; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
-  .font-display { font-family: Georgia, Cambria, 'Times New Roman', Times, serif; }
+  .font-display { font-family: 'Fraunces', Georgia, Cambria, 'Times New Roman', Times, serif; }
   .ribbon-popular {
     background: linear-gradient(135deg, #bf5b3f, #a9762f);
   }
@@ -61,9 +71,9 @@
   <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur border-b border-forest/10">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="#top" class="flex items-center gap-2 focus-ring rounded-md">
-        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-forest text-cream font-display text-lg">W</span>
-        <span class="font-display text-lg sm:text-xl font-bold text-forest leading-tight">
-          4th Generation Studios
+        <img src="images/logo-mark.svg" alt="" width="40" height="40" class="h-10 w-10 shrink-0">
+        <span class="font-display text-lg sm:text-xl font-semibold text-forestdark leading-tight">
+          <span class="text-terracotta">4th</span> Generation Studios
         </span>
       </a>
       <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-forest/90">
